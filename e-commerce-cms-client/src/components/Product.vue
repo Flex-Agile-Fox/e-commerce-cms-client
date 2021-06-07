@@ -1,18 +1,28 @@
 <template>
-  <div class="card" style="width: 18rem">
-    <img :src="product.image_url" class="card-img-top" :alt="product.name" />
-    <div class="card-body">
-      <h5 class="card-title">{{ product.name }}</h5>
-      <span class="badge bg-secondary">{{ product.category }}</span>
-      <p class="card-text">
-        {{ product.description }}
-      </p>
-      <p class="card-text">Rp. {{ product.price }}</p>
-      <p class="card-text">Stock: {{ product.stock }}</p>
-    </div>
-    <div class="card-body">
-      <button class="btn btn-primary">Edit</button>
-      <button class="btn btn-danger">Delete</button>
+  <div class="col-4">
+    <div class="card m-4 text-center" style="width: 25rem">
+      <img :src="product.image_url" class="card-img-top" :alt="product.name" />
+      <div class="card-body capitalize">
+        <h5 class="card-title">
+          {{ product.name }}
+          <span class="badge bg-secondary capitalize">{{
+            product.category
+          }}</span>
+        </h5>
+        <p class="card-text capitalize">
+          {{ product.description }}
+        </p>
+        <p class="card-text">
+          Rp. {{ new Intl.NumberFormat("id-ID").format(product.price) }}
+        </p>
+        <p class="card-text">
+          Stock: {{ new Intl.NumberFormat("id-ID").format(product.stock) }} pcs
+        </p>
+      </div>
+      <div class="card-body d-flex justify-content-around">
+        <button class="btn btn-primary col-5">Edit</button>
+        <button class="btn btn-danger col-5">Delete</button>
+      </div>
     </div>
   </div>
 </template>
@@ -25,4 +35,12 @@ export default {
   },
 };
 </script>
-<style></style>
+
+<style>
+.capitalize {
+  text-transform: capitalize;
+}
+.card-title {
+  font-size: 1.75rem;
+}
+</style>
