@@ -24,7 +24,7 @@
           <td>{{ product.price }}</td>
           <td>
             <a class="mx-2" href="#"><i class="fa fa-edit text-warning" @click.prevent="toEditPage(product.id)"></i></a>
-            <a class="mx-2" href="#"><i class="fa fa-trash text-danger"></i></a>
+            <a class="mx-2" href="#"><i class="fa fa-trash text-danger" @click.prevent="deleteProduct(product.id)"></i></a>
           </td>
         </tr>
       </tbody>
@@ -39,6 +39,9 @@ export default {
   methods: {
     toEditPage (id) {
       this.$router.push({ name: 'EditPage', params: { id } })
+    },
+    deleteProduct (id) {
+      this.$store.dispatch('deleteProduct', id)
     }
   }
 }

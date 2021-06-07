@@ -81,6 +81,33 @@ export default new Vuex.Store({
           }
         })
     },
+    addProduct ({ state }) {
+      const { name, image_url: imageUrl, category, price, stock } = state.selectedProduct
+      axios({
+        method: 'POST',
+        url: 'products',
+        headers: {
+          access_token: localStorage.getItem('access_token')
+        },
+        data: {
+          name,
+          image_url: imageUrl,
+          category,
+          price,
+          stock
+        }
+      })
+        .then(({ data }) => {
+          router.push({ name: 'MainPage' })
+        })
+        .catch((err) => {
+          console.log(err.response.data)
+          // if (err.response) {
+          //   const errors = err.response.data.errorMessages;
+          //   swal("Failed to add product", errors.join(', '), "error");
+          // }
+        })
+    },
     detailProduct ({ commit }, id) {
       axios({
         method: 'GET',
@@ -116,7 +143,7 @@ export default new Vuex.Store({
           stock
         }
       })
-        .then(({ data }) => {
+        .then(() => {
           router.push({ name: 'MainPage' })
         })
         .catch((err) => {
@@ -124,6 +151,25 @@ export default new Vuex.Store({
           // if (err.response) {
           //   const errors = err.response.data.errorMessages;
           //   swal("Failed to get detail product", errors.join(', '), "error");
+          // }
+        })
+    },
+    deleteProduct (_, id) {
+      axios({
+        method: 'DELETE',
+        url: `products/${id}`,
+        headers: {
+          access_token: localStorage.getItem('access_token')
+        }
+      })
+        .then(() => {
+          this.listProduct()
+        })
+        .catch((err) => {
+          console.log(err.response.data)
+          // if (err.response) {
+          //   const errors = err.response.data.errorMessages;
+          //   swal("Failed to delete product", errors.join(', '), "error");
           // }
         })
     }

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary mt-2 mb-2 text-center rounded-pill" id="btn-add" @click.prevent="toAddPage"><i class="fas fa-plus-circle"></i>  New Product</button>
+    </div>
     <ProductsTable :products="products"/>
   </div>
 </template>
@@ -20,6 +23,9 @@ export default {
   methods: {
     listProduct () {
       this.$store.dispatch('listProduct')
+    },
+    toAddPage () {
+      this.$router.push({ name: 'AddPage' })
     }
   },
   created () {
