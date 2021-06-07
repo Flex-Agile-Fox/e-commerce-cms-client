@@ -44,6 +44,10 @@ export default new Vuex.Store({
           // }
         })
     },
+    logout (context) {
+      localStorage.clear()
+      router.push({ name: 'loginPage' })
+    },
     listProduct ({ commit }) {
       axios({
         method: 'GET',
