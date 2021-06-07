@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     name: 'LoginPage',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -36,7 +36,8 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'LoginPage' && !localStorage.access_token) next({ name: 'LoginPage' })
+  if (to.path === '/') next({ name: 'LoginPage' })
+  else if (to.name !== 'LoginPage' && !localStorage.getItem('access_token')) next({ name: 'LoginPage' })
   else next()
 })
 

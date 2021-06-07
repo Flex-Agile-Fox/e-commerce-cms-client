@@ -4,16 +4,16 @@
       <form class="mb-3" @submit.prevent="editProduct">
         <div class="mb-3 px-3">
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" v-model="name">
+          <input type="text" class="form-control" v-model="product.name">
         </div>
         <div class="mb-3 px-3">
           <label for="image_url" class="form-label">Image Url</label>
-          <input type="text" class="form-control" v-model="imageUrl">
+          <input type="text" class="form-control" v-model="product.image_url">
         </div>
         <div class="mb-3 px-3">
           <label for="category" class="form-label">Category</label>
           <div>
-            <select class="form-select" aria-label="Default select example" style="width:100%;padding:8px 2px" v-model="category">
+            <select class="form-select" aria-label="Default select example" style="width:100%;padding:8px 2px" v-model="product.category">
               <option value="" selected>Select Category</option>
               <option value="Shirt">Shirt</option>
               <option value="T-Shirt">T-Shirt</option>
@@ -25,11 +25,11 @@
         </div>
         <div class="mb-3 px-3">
           <label for="price" class="form-label">Price</label>
-          <input type="number" class="form-control" v-model="price">
+          <input type="number" class="form-control" v-model="product.price">
         </div>
         <div class="mb-3 px-3">
           <label for="stock" class="form-label">Stock</label>
-          <input type="number" class="form-control" v-model="stock">
+          <input type="number" class="form-control" v-model="product.stock">
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn-primary mt-2" style="width: 100px">Submit</button>
@@ -44,45 +44,14 @@
 
 export default {
   name: 'EditPage',
-  computed: {
-    name: {
-      get () {
-        return this.$store.state.selectedProduct.name
-      },
-      set (value) {
-        this.$store.commit('setName', value)
-      }
-    },
-    imageUrl: {
-      get () {
-        return this.$store.state.selectedProduct.image_url
-      },
-      set (value) {
-        this.$store.commit('setImageUrl', value)
-      }
-    },
-    category: {
-      get () {
-        return this.$store.state.selectedProduct.category
-      },
-      set (value) {
-        this.$store.commit('setCategory', value)
-      }
-    },
-    price: {
-      get () {
-        return this.$store.state.selectedProduct.price
-      },
-      set (value) {
-        this.$store.commit('setPrice', value)
-      }
-    },
-    stock: {
-      get () {
-        return this.$store.state.selectedProduct.stock
-      },
-      set (value) {
-        this.$store.commit('setStock', value)
+  data () {
+    return {
+      product: {
+        name: '',
+        image_url: '',
+        category: '',
+        price: '',
+        stock: ''
       }
     }
   },
@@ -90,10 +59,26 @@ export default {
     detailProduct () {
       const id = this.$route.params.id
       this.$store.dispatch('detailProduct', id)
+
+        .then(({ data }) => {
+          this.product.name = data.data.name
+          this.product.image_url = data.data.image_url
+          this.product.category = data.data.category
+          this.product.price = data.data.price
+          this.product.stock = data.data.stock
+        })
+        .catch((err) => {
+          console.log(err.response.data)
+          // if (err.response) {
+          //   const errors = err.response.data.errorMessages;
+          //   swal("Failed to get detail product", errors.join(', '), "error");
+          // }
+        })
     },
     editProduct () {
       const id = this.$route.params.id
-      this.$store.dispatch('editProduct', id)
+      const product = this.product
+      this.$store.dispatch('editProduct', { id, product })
     }
   },
   created () {

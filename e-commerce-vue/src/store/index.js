@@ -14,24 +14,6 @@ export default new Vuex.Store({
   mutations: {
     setProducts (state, payload) {
       state.products = payload
-    },
-    setSelectedProduct (state, payload) {
-      state.selectedProduct = payload
-    },
-    setName (state, payload) {
-      state.selectedProduct.name = payload
-    },
-    setImageUrl (state, payload) {
-      state.selectedProduct.image_url = payload
-    },
-    setCategory (state, payload) {
-      state.selectedProduct.category = payload
-    },
-    setPrice (state, payload) {
-      state.selectedProduct.price = payload
-    },
-    setStock (state, payload) {
-      state.selectedProduct.stock = payload
     }
   },
   actions: {
@@ -81,23 +63,16 @@ export default new Vuex.Store({
           }
         })
     },
-    addProduct ({ state }) {
-      const { name, image_url: imageUrl, category, price, stock } = state.selectedProduct
+    addProduct (context, payload) {
       axios({
         method: 'POST',
         url: 'products',
         headers: {
           access_token: localStorage.getItem('access_token')
         },
-        data: {
-          name,
-          image_url: imageUrl,
-          category,
-          price,
-          stock
-        }
+        data: payload
       })
-        .then(({ data }) => {
+        .then(() => {
           router.push({ name: 'MainPage' })
         })
         .catch((err) => {
@@ -109,39 +84,22 @@ export default new Vuex.Store({
         })
     },
     detailProduct ({ commit }, id) {
-      axios({
+      return axios({
         method: 'GET',
         url: `products/${id}`,
         headers: {
           access_token: localStorage.getItem('access_token')
         }
       })
-        .then(({ data }) => {
-          commit('setSelectedProduct', data.data)
-        })
-        .catch((err) => {
-          console.log(err.response.data)
-          // if (err.response) {
-          //   const errors = err.response.data.errorMessages;
-          //   swal("Failed to get detail product", errors.join(', '), "error");
-          // }
-        })
     },
-    editProduct ({ state }, id) {
-      const { name, image_url: imageUrl, category, price, stock } = state.selectedProduct
+    editProduct (context, payload) {
       axios({
         method: 'PUT',
-        url: `products/${id}`,
+        url: `products/${payload.id}`,
         headers: {
           access_token: localStorage.getItem('access_token')
         },
-        data: {
-          name,
-          image_url: imageUrl,
-          category,
-          price,
-          stock
-        }
+        data: payload.product
       })
         .then(() => {
           router.push({ name: 'MainPage' })
@@ -154,7 +112,7 @@ export default new Vuex.Store({
           // }
         })
     },
-    deleteProduct (_, id) {
+    deleteProduct (context, id) {
       axios({
         method: 'DELETE',
         url: `products/${id}`,
@@ -163,7 +121,7 @@ export default new Vuex.Store({
         }
       })
         .then(() => {
-          this.listProduct()
+          context.dispatch('listProduct')
         })
         .catch((err) => {
           console.log(err.response.data)
