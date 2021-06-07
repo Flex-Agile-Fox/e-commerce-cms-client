@@ -15,7 +15,8 @@ const routes = [
     name: "Products",
     component: Products,
     beforeEnter: (to, from, next) => {
-      if (store.dispatch("isLoggedIn")) next();
+      store.dispatch("isLoggedIn");
+      if (store.state.login) next();
       else next({ name: "Login" });
     },
   },
@@ -24,7 +25,8 @@ const routes = [
     name: "AddProduct",
     component: AddProduct,
     beforeEnter: (to, from, next) => {
-      if (store.dispatch("isLoggedIn")) next();
+      store.dispatch("isLoggedIn");
+      if (store.state.login) next();
       else next({ name: "Login" });
     },
   },
@@ -33,7 +35,8 @@ const routes = [
     name: "EditProduct",
     component: EditProduct,
     beforeEnter: (to, from, next) => {
-      if (store.dispatch("isLoggedIn")) next();
+      store.dispatch("isLoggedIn");
+      if (store.state.login) next();
       else next({ name: "Login" });
     },
   },

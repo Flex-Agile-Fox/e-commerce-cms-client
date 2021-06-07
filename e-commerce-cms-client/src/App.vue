@@ -25,7 +25,7 @@
         </div>
         <div
           class="btn btn-danger"
-          @click="this.$store.dispatch('logout')"
+          @click="() => this.$store.dispatch('logOut')"
           v-if="this.$store.state.login"
         >
           Logout
