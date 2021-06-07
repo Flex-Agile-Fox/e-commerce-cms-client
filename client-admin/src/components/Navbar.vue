@@ -1,13 +1,19 @@
 <template>
-	<div id="nav">
-		<router-link to="/">Home</router-link>
-	</div>
+  <b-nav id="nav" tabs align="right">
+    <router-link to="/">Home</router-link>
+    <router-link to="/login">Logout</router-link>
+  </b-nav>
 </template>
 
 <script>
 export default {
-	name: 'Navbar',
+  name: "Navbar",
 };
 </script>
 
-<style></style>
+<style>
+#nav {
+  width: auto;
+  height: 8vh;
+}
+</style>
