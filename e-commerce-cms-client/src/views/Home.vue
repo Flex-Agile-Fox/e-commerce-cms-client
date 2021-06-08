@@ -1,17 +1,16 @@
 <template>
   <div>
     <Navbar></Navbar>
-
     <!-- container -->
     <div class="container mt-5">
-      <div class="row">
+      <h2>List Produk:</h2>
+      <div class="row mt-4">
         <ProductList
           :products='products'
         ></ProductList>
       </div>
     </div>
     <!-- container end -->
-
   </div>
 </template>
 
@@ -32,10 +31,6 @@ export default {
   },
   created () {
     this.$store.dispatch('getDataProduct')
-
-    if (!localStorage.getItem('access_token')) {
-      this.$router.push({ path: '/' })
-    }
   }
 }
 </script>

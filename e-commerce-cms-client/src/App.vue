@@ -7,32 +7,7 @@
 <script>
 
 export default {
-  name: 'App',
-  data () {
-    return {
-      isPage: 'Login'
-    }
-  },
-  components: {
-    // Navbar,
-    // Login
-  },
-  methods: {
-    // isLogin () {
-    //   if (localStorage.getItem('access_token')) {
-    //     this.isPage = 'Home'
-    //   } else {
-    //     this.isPage = 'Login'
-    //   }
-    // },
-    // changePage (page) {
-    //   this.isPage = page
-    // },
-    // logout () {
-    //   localStorage.removeItem('access_token')
-    //   this.isLogin()
-    // }
-  }
+  name: 'App'
 }
 </script>
 

@@ -1,17 +1,16 @@
 <template>
   <div>
     <Navbar></Navbar>
-
     <!-- container -->
     <div class="container mt-5">
-      <div class="row">
+      <h2>Form Tambah Produk:</h2>
+      <div class="row mt-4">
         <!-- form add -->
         <FormAddProduct></FormAddProduct>
         <!-- form add end-->
       </div>
     </div>
     <!-- container end -->
-
   </div>
 </template>
 
@@ -24,11 +23,6 @@ export default {
   components: {
     Navbar,
     FormAddProduct
-  },
-  created () {
-    if (!localStorage.getItem('access_token')) {
-      this.$router.push({ path: '/' })
-    }
   }
 }
 </script>

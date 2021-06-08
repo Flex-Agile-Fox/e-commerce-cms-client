@@ -1,15 +1,13 @@
 <template>
-    <div class="col-lg-3 col-md-6">
-        <div class="card" style="width: 15rem;">
-            <img src="https://images.tokopedia.net/img/cache/500-square/product-1/2019/10/21/5362448/5362448_6401e753-e548-435a-9c33-5714db5aa839_700_700.jpg.webp" class="card-img-top" alt="">
-            <!-- <img src="gambar.jpg" class="card-img-top" alt="gambar.jpg"> -->
+    <div class="col-lg-3 col-md-4">
+        <div class="card" style="width: 18rem;">
+            <img :src="product.image_url" class="card-img-top" :alt="product.name">
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
                 <p class="card-text">Rp. {{product.price}}</p>
                 <div class="action">
-                    <a href="#" class="btn btn-primary btn-sm">edit</a>
+                    <router-link :to="'/editProduct/'+product.id" class="btn btn-primary btn-sm">Edit</router-link>
                     <a v-on:click="deleteDataProduct(product.id)" class="btn btn-primary btn-sm">delete</a>
-                    <!-- <a v-on:click="$emit('deleteDataProduct', product.id)" class="btn btn-primary btn-sm">delete</a> -->
                 </div>
             </div>
         </div>
