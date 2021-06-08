@@ -39,6 +39,7 @@ export default {
   methods: {
     toEditPage (id) {
       this.$router.push({ name: 'EditPage', params: { id } })
+      this.$store.commit('setPage', 'edit')
     },
     deleteProduct (id) {
       this.$store.dispatch('deleteProduct', id)

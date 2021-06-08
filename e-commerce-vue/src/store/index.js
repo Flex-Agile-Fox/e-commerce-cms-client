@@ -9,15 +9,19 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     products: [],
-    selectedProduct: {}
+    selectedProduct: {},
+    currentPage: 'login'
   },
   mutations: {
     setProducts (state, payload) {
       state.products = payload
+    },
+    setPage (state, payload) {
+      state.currentPage = payload
     }
   },
   actions: {
-    login (context, payload) {
+    login ({ commit }, payload) {
       const { email, password } = payload
       axios({
         method: 'POST',
@@ -30,6 +34,7 @@ export default new Vuex.Store({
         .then(({ data }) => {
           localStorage.setItem('access_token', data.access_token)
           router.push({ name: 'MainPage' })
+          commit('setPage', 'main')
           // Toastify({
           //   text: "Successfully Login",
           //   duration: 2000,
@@ -44,9 +49,10 @@ export default new Vuex.Store({
           // }
         })
     },
-    logout (context) {
+    logout ({ commit }) {
       localStorage.clear()
       router.push({ name: 'loginPage' })
+      commit('setPage', 'login')
     },
     listProduct ({ commit }) {
       axios({
@@ -67,7 +73,7 @@ export default new Vuex.Store({
           }
         })
     },
-    addProduct (context, payload) {
+    addProduct ({ commit }, payload) {
       axios({
         method: 'POST',
         url: 'products',
@@ -78,6 +84,7 @@ export default new Vuex.Store({
       })
         .then(() => {
           router.push({ name: 'MainPage' })
+          commit('setPage', 'main')
         })
         .catch((err) => {
           console.log(err.response.data)
@@ -96,7 +103,7 @@ export default new Vuex.Store({
         }
       })
     },
-    editProduct (context, payload) {
+    editProduct ({ commit }, payload) {
       axios({
         method: 'PUT',
         url: `products/${payload.id}`,
@@ -107,6 +114,7 @@ export default new Vuex.Store({
       })
         .then(() => {
           router.push({ name: 'MainPage' })
+          commit('setPage', 'main')
         })
         .catch((err) => {
           console.log(err.response.data)

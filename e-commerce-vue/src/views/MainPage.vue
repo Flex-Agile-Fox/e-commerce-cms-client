@@ -26,6 +26,7 @@ export default {
     },
     toAddPage () {
       this.$router.push({ name: 'AddPage' })
+      this.$store.commit('setPage', 'add')
     }
   },
   created () {
