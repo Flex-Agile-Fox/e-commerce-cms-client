@@ -1,8 +1,11 @@
 <template>
   <div class="container">
+    <button class="btn btn-success mt-4" @click="addProduct">
+      Add Product
+    </button>
     <div class="product row">
       <Product
-        v-for="product in products"
+        v-for="product in this.$store.state.products"
         :product="product"
         :key="product.id"
       />
@@ -18,83 +21,16 @@ export default {
   components: {
     Product,
   },
+  methods: {
+    addProduct() {
+      this.$router.push({ name: "AddProduct" });
+    },
+  },
   data() {
-    return {
-      products: [
-        {
-          id: 2,
-          name: "test to update",
-          image_url:
-            "https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-          price: 1000,
-          stock: 5,
-          category: "Hobby",
-          description: "Limited Edition",
-          createdAt: "2021-06-04T11:47:05.864Z",
-          updatedAt: "2021-06-04T11:47:05.864Z",
-        },
-        {
-          id: 3,
-          name: "test to update",
-          image_url:
-            "https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-          price: 1000,
-          stock: 5,
-          category: "Hobby",
-          description: "Limited Edition",
-          createdAt: "2021-06-04T11:47:06.755Z",
-          updatedAt: "2021-06-04T11:47:06.755Z",
-        },
-        {
-          id: 4,
-          name: "test to update",
-          image_url:
-            "https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-          price: 1000,
-          stock: 5,
-          category: "Hobby",
-          description: "Limited Edition",
-          createdAt: "2021-06-04T11:47:07.685Z",
-          updatedAt: "2021-06-04T11:47:07.685Z",
-        },
-        {
-          id: 5,
-          name: "test to update",
-          image_url:
-            "https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-          price: 1000,
-          stock: 5,
-          category: "Hobby",
-          description: "Limited Edition",
-          createdAt: "2021-06-04T11:47:07.685Z",
-          updatedAt: "2021-06-04T11:47:07.685Z",
-        },
-        {
-          id: 6,
-          name: "test to update",
-          image_url:
-            "https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-          price: 1000,
-          stock: 5,
-          category: "Hobby",
-          description: "Limited Edition",
-          createdAt: "2021-06-04T11:47:07.685Z",
-          updatedAt: "2021-06-04T11:47:07.685Z",
-        },
-        {
-          id: 7,
-          name: "test to update",
-          image_url:
-            "https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-          price: 1000,
-          stock: 5,
-          category: "Hobby",
-          description: "Limited Edition",
-          createdAt: "2021-06-04T11:47:07.685Z",
-          updatedAt: "2021-06-04T11:47:07.685Z",
-        },
-      ],
-    };
+    return {};
+  },
+  created() {
+    this.$store.dispatch("getProducts");
   },
 };
 </script>

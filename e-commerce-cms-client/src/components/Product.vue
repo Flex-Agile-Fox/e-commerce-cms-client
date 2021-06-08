@@ -1,7 +1,12 @@
 <template>
   <div class="col-4">
     <div class="card m-4 text-center" style="width: 25rem">
-      <img :src="product.image_url" class="card-img-top" :alt="product.name" />
+      <img
+        :src="product.image_url"
+        class="card-img-top"
+        :alt="product.name"
+        style="height: 398px"
+      />
       <div class="card-body capitalize">
         <h5 class="card-title">
           {{ product.name }}
@@ -20,8 +25,10 @@
         </p>
       </div>
       <div class="card-body d-flex justify-content-around">
-        <button class="btn btn-primary col-5">Edit</button>
-        <button class="btn btn-danger col-5">Delete</button>
+        <button @click="editProduct" class="btn btn-primary col-5">Edit</button>
+        <button @click="deleteProduct" class="btn btn-danger col-5">
+          Delete
+        </button>
       </div>
     </div>
   </div>
@@ -32,6 +39,14 @@ export default {
   name: "Product",
   props: {
     product: Object,
+  },
+  methods: {
+    editProduct() {
+      this.$router.push(`/products/${this.product.id}/edit`);
+    },
+    deleteProduct() {
+      this.$store.dispatch("deleteProduct", this.product.id);
+    },
   },
 };
 </script>
