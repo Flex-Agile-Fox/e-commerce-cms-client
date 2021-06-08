@@ -10,7 +10,8 @@ export default new Vuex.Store({
   state: {
     products: [],
     selectedProduct: {},
-    currentPage: 'login'
+    currentPage: 'login',
+    sort: 'name'
   },
   mutations: {
     setProducts (state, payload) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     setPage (state, payload) {
       state.currentPage = payload
+    },
+    setSort (state, payload) {
+      state.sort = payload
     }
   },
   actions: {
@@ -64,6 +68,7 @@ export default new Vuex.Store({
       })
         .then(({ data }) => {
           commit('setProducts', data.data)
+          commit('setPage', 'main')
         })
         .catch((err) => {
           if (err.response) {
@@ -142,6 +147,11 @@ export default new Vuex.Store({
           //   swal("Failed to delete product", errors.join(', '), "error");
           // }
         })
+    }
+  },
+  getters: {
+    sortProduct: state => {
+      return state.products.sort((a, b) => (a[state.sort] < b[state.sort] ? -1 : 1))
     }
   },
   modules: {

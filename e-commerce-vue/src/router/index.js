@@ -38,6 +38,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.path === '/') next({ name: 'LoginPage' })
   else if (to.name !== 'LoginPage' && !localStorage.getItem('access_token')) next({ name: 'LoginPage' })
+  else if (to.name === 'LoginPage' && localStorage.getItem('access_token')) next({ name: 'MainPage' })
   else next()
 })
 

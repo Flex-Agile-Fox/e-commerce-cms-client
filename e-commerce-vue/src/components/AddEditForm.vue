@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="container mt-5">
-      <div class="card mb-3 mx-auto">
+      <h5 v-if="$store.state.currentPage === 'add'" class="form-label text-center mb-2 px-2">Add Product</h5>
+      <h5 v-else-if="$store.state.currentPage === 'edit'" class="form-label text-center mb-2 px-2">Edit Product</h5>
+      <div class="card mb-3 mx-auto" style="max-width: 50vw;">
         <form class="mb-3" @submit.prevent="submitProduct">
           <div class="mb-3 px-3">
             <label for="name" class="form-label">Name</label>
@@ -32,9 +34,9 @@
             <label for="stock" class="form-label">Stock</label>
             <input type="number" class="form-control" v-model="product.stock">
           </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary mt-2" style="width: 100px">Submit</button>
-            <button type="button" class="btn btn-warning mt-2" style="width: 100px">Cancel</button>
+          <div class="float-end">
+            <button type="button" class="btn btn-secondary mt-2 mx-3" style="width: 100px" @click.prevent="toMain">Cancel</button>
+            <button type="submit" class="btn btn-primary mt-2 mx-3" style="width: 100px">Submit</button>
           </div>
         </form>
       </div>
@@ -55,6 +57,10 @@ export default {
         const product = this.product
         this.$store.dispatch('editProduct', { id, product })
       }
+    },
+    toMain () {
+      this.$router.push({ name: 'MainPage' })
+      this.$store.commit('setPage', 'main')
     }
   }
 }
