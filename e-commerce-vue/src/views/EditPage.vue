@@ -36,16 +36,13 @@ export default {
           this.product.stock = data.data.stock
         })
         .catch((err) => {
-          console.log(err.response.data)
-          // if (err.response) {
-          //   const errors = err.response.data.errorMessages;
-          //   swal("Failed to get detail product", errors.join(', '), "error");
-          // }
+          if (err) console.log(err)
         })
     }
   },
   created () {
     this.detailProduct()
+    this.$store.commit('setPage', 'edit')
   }
 }
 </script>

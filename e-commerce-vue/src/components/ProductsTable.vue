@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import swal from 'sweetalert'
+
 export default {
   name: 'ProductsTable',
   props: ['products'],
@@ -42,7 +44,12 @@ export default {
       this.$store.commit('setPage', 'edit')
     },
     deleteProduct (id) {
-      this.$store.dispatch('deleteProduct', id)
+      swal('Are you sure you want to delete this?', {
+        buttons: ['No', true]
+      })
+        .then((value) => {
+          if (value === true) this.$store.dispatch('deleteProduct', id)
+        })
     }
   }
 }

@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import router from '../router'
 import axios from 'axios'
+import Toastify from 'toastify-js'
+import swal from 'sweetalert'
 axios.defaults.baseURL = 'http://localhost:3000'
 
 Vue.use(Vuex)
@@ -39,24 +41,29 @@ export default new Vuex.Store({
           localStorage.setItem('access_token', data.access_token)
           router.push({ name: 'MainPage' })
           commit('setPage', 'main')
-          // Toastify({
-          //   text: "Successfully Login",
-          //   duration: 2000,
-          //   backgroundColor: "#07bc0c",
-          // }).showToast();
+          Toastify({
+            text: 'Successfully Login',
+            duration: 2000,
+            backgroundColor: '#07bc0c'
+          }).showToast()
         })
         .catch((err) => {
           console.log(err.response.data)
-          // if (err.response) {
-          //   const errors = err.response.data.errorMessages;
-          //   swal("Failed to login", errors.join(', '), "error");
-          // }
+          if (err.response) {
+            const errors = err.response.data.errorMessages
+            swal('Failed to login', errors.join(', '), 'error')
+          }
         })
     },
     logout ({ commit }) {
       localStorage.clear()
       router.push({ name: 'loginPage' })
       commit('setPage', 'login')
+      Toastify({
+        text: 'Successfully Logout',
+        duration: 2000,
+        backgroundColor: '#3498db'
+      }).showToast()
     },
     listProduct ({ commit }) {
       axios({
@@ -68,13 +75,11 @@ export default new Vuex.Store({
       })
         .then(({ data }) => {
           commit('setProducts', data.data)
-          commit('setPage', 'main')
         })
         .catch((err) => {
           if (err.response) {
-            console.log(err.response.data)
-            // const errors = err.response.data.errorMessages;
-            // swal("Failed to show list product", errors.join(', '), "error");
+            const errors = err.response.data.errorMessages
+            swal('Failed to show list product', errors.join(', '), 'error')
           }
         })
     },
@@ -90,13 +95,17 @@ export default new Vuex.Store({
         .then(() => {
           router.push({ name: 'MainPage' })
           commit('setPage', 'main')
+          Toastify({
+            text: 'Successfully add product',
+            duration: 2000,
+            backgroundColor: '#07bc0c'
+          }).showToast()
         })
         .catch((err) => {
-          console.log(err.response.data)
-          // if (err.response) {
-          //   const errors = err.response.data.errorMessages;
-          //   swal("Failed to add product", errors.join(', '), "error");
-          // }
+          if (err.response) {
+            const errors = err.response.data.errorMessages
+            swal('Failed to add product', errors.join(', '), 'error')
+          }
         })
     },
     detailProduct ({ commit }, id) {
@@ -120,13 +129,17 @@ export default new Vuex.Store({
         .then(() => {
           router.push({ name: 'MainPage' })
           commit('setPage', 'main')
+          Toastify({
+            text: 'Successfully update product',
+            duration: 2000,
+            backgroundColor: '#f1c40f'
+          }).showToast()
         })
         .catch((err) => {
-          console.log(err.response.data)
-          // if (err.response) {
-          //   const errors = err.response.data.errorMessages;
-          //   swal("Failed to get detail product", errors.join(', '), "error");
-          // }
+          if (err.response) {
+            const errors = err.response.data.errorMessages
+            swal('Failed to update product', errors.join(', '), 'error')
+          }
         })
     },
     deleteProduct (context, id) {
@@ -139,13 +152,17 @@ export default new Vuex.Store({
       })
         .then(() => {
           context.dispatch('listProduct')
+          Toastify({
+            text: 'Successfully delete product',
+            duration: 2000,
+            backgroundColor: '#e74c3c'
+          }).showToast()
         })
         .catch((err) => {
-          console.log(err.response.data)
-          // if (err.response) {
-          //   const errors = err.response.data.errorMessages;
-          //   swal("Failed to delete product", errors.join(', '), "error");
-          // }
+          if (err.response) {
+            const errors = err.response.data.errorMessages
+            swal('Failed to delete product', errors.join(', '), 'error')
+          }
         })
     }
   },

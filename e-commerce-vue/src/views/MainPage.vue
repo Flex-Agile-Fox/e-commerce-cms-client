@@ -1,13 +1,20 @@
 <template>
   <div>
-    <div>
-      <select class="form-select" aria-label="Default select example" style="width:20%;padding:8px 2px" @change="sortBy(sortType)" v-model="sortType">
-        <option v-for="(option, index) in options" :value="option.value" :key="index">{{option.text}}</option>
-      </select>
-    </div>
-
-    <div class="text-center my-3">
-      <button type="button" class="btn btn-primary mt-2 mb-2 text-center" id="btn-add" @click.prevent="toAddPage"><i class="fas fa-plus-circle"></i>  Add Product</button>
+    <div class="container mt-3 mb-4">
+      <div class="row mt-5 align-items-center">
+        <div class="col d-flex flex-row align-items-center">
+          <label for="sel-options">Sort By :</label>
+          <select id="sel-options" class="form-select mx-2" aria-label="Default select example" style="width:100px;padding:4px" v-model="sortType">
+            <option v-for="(option, index) in options" :value="option.value" :key="index">{{option.text}}</option>
+          </select>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <h4>Product Data</h4>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <button type="button" class="btn btn-primary text-center" id="btn-add" @click.prevent="toAddPage"><i class="fas fa-plus-circle"></i>  Add Product</button>
+        </div>
+      </div>
     </div>
     <ProductsTable :products="productSorted"/>
   </div>
@@ -37,6 +44,14 @@ export default {
     },
     productSorted () {
       return this.$store.getters.sortProduct
+    },
+    sortType: {
+      get () {
+        return this.$store.state.sort
+      },
+      set (value) {
+        this.$store.commit('setSort', value)
+      }
     }
   },
   methods: {
@@ -46,13 +61,11 @@ export default {
     toAddPage () {
       this.$router.push({ name: 'AddPage' })
       this.$store.commit('setPage', 'add')
-    },
-    sortBy (sort) {
-      this.$store.commit('setSort', sort)
     }
   },
   created () {
     this.listProduct()
+    this.$store.commit('setPage', 'main')
   }
 }
 </script>

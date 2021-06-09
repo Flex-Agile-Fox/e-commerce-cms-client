@@ -22,6 +22,9 @@ export default {
         stock: ''
       }
     }
+  },
+  created () {
+    this.$store.commit('setPage', 'add')
   }
 }
 </script>
