@@ -5,7 +5,8 @@ import router from "../router";
 import Toastify from "toastify-js";
 
 Vue.use(Vuex);
-axios.defaults.baseURL = "http://localhost:3000";
+// axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://e-commerce-rendy.herokuapp.com";
 
 export default new Vuex.Store({
   state: {

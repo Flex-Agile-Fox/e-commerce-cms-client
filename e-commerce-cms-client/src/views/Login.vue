@@ -42,7 +42,8 @@
 import axios from "axios";
 import Toastify from "toastify-js";
 
-axios.defaults.baseURL = "http://localhost:3000";
+// axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://e-commerce-rendy.herokuapp.com";
 export default {
   name: "Login",
   data() {
