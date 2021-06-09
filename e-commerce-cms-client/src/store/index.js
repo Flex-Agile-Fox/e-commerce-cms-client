@@ -43,7 +43,7 @@ export default new Vuex.Store({
           duration: 3000,
           gravity: 'bottom', // `top` or `bottom`
           position: 'right', // `left`, `center` or `right`
-          backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)'
+          backgroundColor: '#3CB371'
         }).showToast()
       }).catch((err) => {
         const errMessage = err.response.data.errMsg
@@ -51,7 +51,8 @@ export default new Vuex.Store({
           Toastify({
             text: e,
             gravity: 'bottom', // `top` or `bottom`
-            duration: 3000
+            duration: 3000,
+            backgroundColor: '#FF0000'
           }).showToast()
         })
       })
@@ -70,6 +71,15 @@ export default new Vuex.Store({
         // this.products = data.data
         context.commit('products', data.data)
       }).catch((err) => {
+        const errMessage = err.response.data.errMsg
+        errMessage.forEach(e => {
+          Toastify({
+            text: e,
+            gravity: 'bottom', // `top` or `bottom`
+            duration: 3000,
+            backgroundColor: '#FF0000'
+          }).showToast()
+        })
         console.log(err)
       })
     },
@@ -97,7 +107,7 @@ export default new Vuex.Store({
           duration: 3000,
           gravity: 'bottom', // `top` or `bottom`
           position: 'right', // `left`, `center` or `right`
-          backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)'
+          backgroundColor: '#3CB371'
         }).showToast()
       }).catch((err) => {
         const errMessage = err.response.data.errMsg
@@ -105,7 +115,8 @@ export default new Vuex.Store({
           Toastify({
             text: e,
             gravity: 'bottom', // `top` or `bottom`
-            duration: 3000
+            duration: 3000,
+            backgroundColor: '#FF0000'
           }).showToast()
         })
       })
@@ -139,9 +150,18 @@ export default new Vuex.Store({
           duration: 3000,
           gravity: 'bottom', // `top` or `bottom`
           position: 'right', // `left`, `center` or `right`
-          backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)'
+          backgroundColor: '#3CB371'
         }).showToast()
       }).catch((err) => {
+        const errMessage = err.response.data.errMsg
+        errMessage.forEach(e => {
+          Toastify({
+            text: e,
+            gravity: 'bottom', // `top` or `bottom`
+            duration: 3000,
+            backgroundColor: '#FF0000'
+          }).showToast()
+        })
         console.log(err)
       })
     },

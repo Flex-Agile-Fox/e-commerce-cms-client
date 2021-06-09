@@ -28,10 +28,10 @@
             <div class="mb-2 row">
               <label class="col-sm-3 col-form-label"></label>
               <div class="col-sm-1">
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-primary" style="width:80px;">Simpan</button>
               </div>
               <div class="col-sm-1">
-                <button class="btn btn-warning">Reset</button>
+                <button class="btn btn-warning" style="width:80px; margin-left:-8px;">Reset</button>
               </div>
             </div>
          </form>

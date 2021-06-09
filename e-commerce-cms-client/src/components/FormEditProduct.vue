@@ -31,7 +31,7 @@
                     <button type="submit" class="btn btn-primary">Simpan</button>
                   </div>
                   <div class="col-sm-1">
-                    <button class="btn btn-warning">Reset</button>
+                    <router-link to="/home" class="btn btn-warning" style="margin-left:-15px;">Kembali</router-link>
                   </div>
                 </div>
     </form>

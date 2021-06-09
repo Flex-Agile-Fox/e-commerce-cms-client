@@ -3,7 +3,7 @@
     <Navbar></Navbar>
     <!-- container -->
     <div class="container mt-5">
-      <h2>Form Tambah Produk:</h2>
+      <h2 style="margin-left:100px">Form Tambah Produk:</h2>
       <div class="row mt-4">
         <!-- form add -->
         <FormAddProduct></FormAddProduct>
