@@ -24,13 +24,7 @@
 						<div class="datatable-table">
 							<b-table sticky-header="60vh" :items="products" :fields="fields">
 								<template #cell(image_url)="data">
-									<b-img
-										:src="data.value"
-										fluid
-										width="50"
-										height="30"
-										class="product-image"
-									></b-img>
+									<b-img :src="data.value" class="product-image"></b-img>
 								</template>
 								<template #cell(price)="data">
 									<span>
@@ -147,7 +141,8 @@ export default {
 	font-size: 20px;
 }
 .product-image {
-	width: 100px;
+	width: 60px;
+	height: 50px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 .mr-3 {
