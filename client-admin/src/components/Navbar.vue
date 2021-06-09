@@ -1,19 +1,36 @@
 <template>
-  <b-nav id="nav" tabs align="right">
-    <router-link to="/">Home</router-link>
-    <router-link to="/login">Logout</router-link>
-  </b-nav>
+	<b-navbar type="dark" variant="dark">
+		<b-navbar-brand to="/" class="nav-title">Dashboard</b-navbar-brand>
+		<b-navbar-nav class="ml-auto mr-12">
+			<b-nav-item @click.prevent="logout" class="logout">Logout</b-nav-item>
+		</b-navbar-nav>
+	</b-navbar>
 </template>
 
 <script>
 export default {
-  name: "Navbar",
+	name: 'Navbar',
+	methods: {
+		logout() {
+			this.$store.dispatch('logout');
+		},
+	},
 };
 </script>
 
 <style>
-#nav {
-  width: auto;
-  height: 8vh;
+.nav-title {
+	margin-left: 20px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+.logout {
+	font-weight: 700;
+}
+.ml-auto {
+	margin-left: auto;
+}
+.mr-12 {
+	margin-right: 12px;
 }
 </style>
