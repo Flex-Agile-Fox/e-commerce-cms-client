@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="container mt-3 mb-4">
-      <div class="row mt-5 align-items-center">
+    <div class="container mt-5 mb-2">
+      <div class="row align-items-center">
         <div class="col d-flex flex-row align-items-center">
           <label for="sel-options">Sort By :</label>
           <select id="sel-options" class="form-select mx-2" aria-label="Default select example" style="width:100px;padding:4px" v-model="sortType">

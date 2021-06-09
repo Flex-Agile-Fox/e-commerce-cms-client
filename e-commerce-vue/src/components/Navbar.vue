@@ -7,6 +7,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <router-link v-if="$store.state.currentPage === 'add' || $store.state.currentPage === 'edit'"
+          class="nav-link" style="color: wheat;" @click.prevent="$store.commit('setPage', 'main')" :to="{ name: 'MainPage' }">
+              Main
+          </router-link>
           <li v-if="$store.state.currentPage !== 'login'" class="nav-item">
             <a class="nav-link" href="#" style="color: wheat;" @click.prevent="$store.dispatch('logout')">Logout</a>
           </li>

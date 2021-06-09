@@ -4,7 +4,8 @@ import router from '../router'
 import axios from 'axios'
 import Toastify from 'toastify-js'
 import swal from 'sweetalert'
-axios.defaults.baseURL = 'http://localhost:3000'
+// axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'https://agile-ecommerce-cms.herokuapp.com'
 
 Vue.use(Vuex)
 

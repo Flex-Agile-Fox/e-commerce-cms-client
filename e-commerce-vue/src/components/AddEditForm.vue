@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container mt-5">
-      <div class="card mb-3 mx-auto" style="max-width: 40vw;">
+      <div class="card mb-3 mx-auto bg-body" style="max-width: 40vw;">
         <h5 v-if="$store.state.currentPage === 'add'" class="form-label text-center mt-3 mb-4 px-2">Add Product</h5>
         <h5 v-else-if="$store.state.currentPage === 'edit'" class="form-label text-center mt-3 mb-4 px-2">Edit Product</h5>
         <form class="mb-3" @submit.prevent="submitProduct">
@@ -18,11 +18,13 @@
             <div>
               <select class="form-select" aria-label="Default select example" style="width:100%;padding:8px 2px" v-model="product.category">
                 <option value="" selected>Select Category</option>
-                <option value="Shirt">Shirt</option>
-                <option value="T-Shirt">T-Shirt</option>
-                <option value="Shoes">Shoes</option>
                 <option value="Hat">Hat</option>
+                <option value="Hat">Hoodie</option>
+                <option value="Hat">Jacket</option>
                 <option value="Pants">Pants</option>
+                <option value="Shirt">Shirt</option>
+                <option value="Shoes">Shoes</option>
+                <option value="T-Shirt">T-Shirt</option>
               </select>
             </div>
           </div>
