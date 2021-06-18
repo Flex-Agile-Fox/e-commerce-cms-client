@@ -19,8 +19,8 @@
               <select class="form-select" aria-label="Default select example" style="width:100%;padding:8px 2px" v-model="product.category">
                 <option value="" selected>Select Category</option>
                 <option value="Hat">Hat</option>
-                <option value="Hat">Hoodie</option>
-                <option value="Hat">Jacket</option>
+                <option value="Hoodie">Hoodie</option>
+                <option value="Jacket">Jacket</option>
                 <option value="Pants">Pants</option>
                 <option value="Shirt">Shirt</option>
                 <option value="Shoes">Shoes</option>
